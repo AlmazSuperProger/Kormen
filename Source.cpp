@@ -1,24 +1,28 @@
 #include "iostream"
+
 using namespace std;
 
-int main()
-{
-	int A[] = { 13,12,10,111,2,4,5,9,11,12,17 };
-	int arrayLen = sizeof(A) / sizeof(A[0]);
-	int key;
-	int i;
+// —ортировка выбором. »щем минимальный элемент и ставим его A[0], среди остальных ищем минимальный и ставим его A[1] и т.д
 
-	for (int j = 1; j < arrayLen; j++) {
-		key = A[j];
-		i = j - 1;
-		while ((i >= 0) && key < A[i]) {
-			A[i + 1] = A[i];
-			i = i - 1;
+int main() {
+	int A[] = { 2,4,5,6,1,1,12,3,4,8,6,4 };
+	int lenA = sizeof(A) / sizeof(A[0]);
+	int min;
+	int index;
+
+	for (int j = 0 ; j < lenA-1; j++) {
+		min = A[j];
+		for (int i = j+1; i < lenA; i++) {
+			if (A[i] < min) {
+				min = A[i];
+				index = i;
+			};
 		};
-		A[i+1] = key;
+		A[index] = A[j];
+		A[j] = min;
 	};
-	
-	for (int i = 0; i < arrayLen; i++) {
+
+	for (int i = 0; i < lenA; i++) {
 		cout << A[i] << endl;
 	}
 }
